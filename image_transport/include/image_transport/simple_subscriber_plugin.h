@@ -37,6 +37,7 @@
 
 #include "image_transport/subscriber_plugin.h"
 #include <boost/scoped_ptr.hpp>
+#include "exportdecl.h"
 
 namespace image_transport {
 

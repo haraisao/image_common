@@ -39,13 +39,14 @@
 #include <sensor_msgs/Image.h>
 #include <boost/noncopyable.hpp>
 #include "image_transport/transport_hints.h"
+#include "exportdecl.h"
 
 namespace image_transport {
 
 /**
  * \brief Base class for plugins to Subscriber.
  */
-class SubscriberPlugin : boost::noncopyable
+class IMAGE_TRANSPORT_DECL SubscriberPlugin : boost::noncopyable
 {
 public:
   typedef boost::function<void(const sensor_msgs::ImageConstPtr&)> Callback;

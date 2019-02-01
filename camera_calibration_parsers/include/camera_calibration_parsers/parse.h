@@ -38,6 +38,8 @@
 #include <string>
 #include <sensor_msgs/CameraInfo.h>
 
+#include "exportdecl.h"
+
 /// @todo: use stream-based API, so no read/parse distinction
 namespace camera_calibration_parsers {
 
@@ -50,7 +52,7 @@ namespace camera_calibration_parsers {
  * \param camera_name Name of the camera
  * \param cam_info Camera parameters
  */
-bool writeCalibration(const std::string& file_name, const std::string& camera_name,
+CAMERA_CALIBRATION_PARSERS_DECL bool writeCalibration(const std::string& file_name, const std::string& camera_name,
                       const sensor_msgs::CameraInfo& cam_info);
 
 /**
@@ -62,7 +64,7 @@ bool writeCalibration(const std::string& file_name, const std::string& camera_na
  * \param[out] camera_name Name of the camera
  * \param[out] cam_info Camera parameters
  */
-bool readCalibration(const std::string& file_name, std::string& camera_name,
+CAMERA_CALIBRATION_PARSERS_DECL bool readCalibration(const std::string& file_name, std::string& camera_name,
                      sensor_msgs::CameraInfo& cam_info);
 
 /**
@@ -73,7 +75,7 @@ bool readCalibration(const std::string& file_name, std::string& camera_name,
  * \param[out] camera_name Name of the camera
  * \param[out] cam_info Camera parameters
  */
-bool parseCalibration(const std::string& buffer, const std::string& format,
+CAMERA_CALIBRATION_PARSERS_DECL bool parseCalibration(const std::string& buffer, const std::string& format,
                       std::string& camera_name, sensor_msgs::CameraInfo& cam_info);
 
 } //namespace camera_calibration_parsers

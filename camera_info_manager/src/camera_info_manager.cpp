@@ -39,7 +39,9 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifndef WIN32
 #include <unistd.h>
+#endif
 #include <ros/ros.h>
 #include <ros/package.h>
 #include <boost/algorithm/string.hpp>
@@ -479,7 +481,25 @@ CameraInfoManager::saveCalibration(const sensor_msgs::CameraInfo &new_info,
 
   return success;
 }
-  
+
+#ifdef WIN32
+#include <windows.h>
+/*
+*/
+bool is_dir(std::string dirname)
+{
+  WIN32_FIND_DATA fd;
+  HANDLE h;
+  bool res=false;
+
+  h = FindFirstFileEx(dirname.c_str(), FindExInfoStandard, &fd, FindExSearchNameMatch, NULL, 0);
+  if ( INVALID_HANDLE_VALUE == h ) { return false; }
+  if ( fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) { res = true; }
+  FindClose( h );
+  return res;
+}
+#endif
+
 /** Save CameraInfo calibration data to a file.
  *
  * @pre mutex_ unlocked
@@ -532,12 +552,17 @@ CameraInfoManager::saveCalibrationFile(const sensor_msgs::CameraInfo &new_info,
           return false;
         }
     }
+#ifdef WIN32
+  else if (!is_dir(dirname))
+#else
   else if (!S_ISDIR(stat_data.st_mode))
+#endif
     {
       // dirname exists but is not a directory
       ROS_ERROR_STREAM("[" << dirname << "] is not a directory");
       return false;
     }
+
 
   // Directory exists and is accessible. Permissions might still be bad.
 

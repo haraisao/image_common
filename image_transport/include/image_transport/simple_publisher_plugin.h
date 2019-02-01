@@ -37,6 +37,7 @@
 
 #include "image_transport/publisher_plugin.h"
 #include <boost/scoped_ptr.hpp>
+#include "exportdecl.h"
 
 namespace image_transport {
 
@@ -58,7 +59,7 @@ namespace image_transport {
  * It defaults to \<base topic\>/\<transport name\>.
  */
 template <class M>
-class SimplePublisherPlugin : public PublisherPlugin
+class  SimplePublisherPlugin : public PublisherPlugin
 {
 public:
   virtual ~SimplePublisherPlugin() {}

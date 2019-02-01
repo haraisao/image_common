@@ -36,13 +36,14 @@
 #define IMAGE_TRANSPORT_TRANSPORT_HINTS_H
 
 #include <ros/ros.h>
+#include "exportdecl.h"
 
 namespace image_transport {
 
 /**
  * \brief Stores transport settings for an image topic subscription.
  */
-class TransportHints
+class IMAGE_TRANSPORT_DECL TransportHints
 {
 public:
   /**

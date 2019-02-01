@@ -36,6 +36,7 @@
 #define IMAGE_TRANSPORT_RAW_SUBSCRIBER_H
 
 #include "image_transport/simple_subscriber_plugin.h"
+#include "exportdecl.h"
 
 namespace image_transport {
 

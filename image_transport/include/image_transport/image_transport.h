@@ -40,6 +40,8 @@
 #include "image_transport/camera_publisher.h"
 #include "image_transport/camera_subscriber.h"
 
+#include "exportdecl.h"
+
 namespace image_transport {
 
 /**
@@ -48,7 +50,7 @@ namespace image_transport {
  * ImageTransport is analogous to ros::NodeHandle in that it contains advertise() and
  * subscribe() functions for creating advertisements and subscriptions of image topics.
  */
-class ImageTransport
+class IMAGE_TRANSPORT_DECL ImageTransport
 {
 public:
   explicit ImageTransport(const ros::NodeHandle& nh);

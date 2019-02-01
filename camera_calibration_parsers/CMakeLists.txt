@@ -7,7 +7,7 @@ find_package(PythonLibs REQUIRED)
 if(PYTHONLIBS_VERSION_STRING VERSION_LESS 3)
   find_package(Boost REQUIRED COMPONENTS filesystem python)
 else()
-  find_package(Boost REQUIRED COMPONENTS filesystem python3)
+  find_package(Boost REQUIRED COMPONENTS filesystem python37)
 endif()
 include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
 
@@ -19,17 +19,24 @@ catkin_package(
   CATKIN_DEPENDS sensor_msgs
 )
 
+if(NOT WIN32)
 find_package(PkgConfig)
-
+endif()
 
 if (ANDROID)
     find_package(yaml-cpp)
     add_definitions(-DHAVE_NEW_YAMLCPP)
 else()
-  pkg_check_modules(YAML_CPP yaml-cpp)
-  if(${YAML_CPP_VERSION} VERSION_GREATER 0.5)
+  if(NOT WIN32)
+    pkg_check_modules(YAML_CPP yaml-cpp)
+    if(${YAML_CPP_VERSION} VERSION_GREATER 0.5)
+      add_definitions(-DHAVE_NEW_YAMLCPP)
+    endif()
+  else()
+    find_package(yaml-cpp)
     add_definitions(-DHAVE_NEW_YAMLCPP)
   endif()
+
   link_directories(${YAML_CPP_LIBRARY_DIRS})
 endif()
 include_directories(${YAML_CPP_INCLUDE_DIRS})

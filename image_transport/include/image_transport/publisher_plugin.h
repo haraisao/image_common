@@ -39,12 +39,14 @@
 #include <sensor_msgs/Image.h>
 #include "image_transport/single_subscriber_publisher.h"
 
+#include "exportdecl.h"
+
 namespace image_transport {
 
 /**
  * \brief Base class for plugins to Publisher.
  */
-class PublisherPlugin : boost::noncopyable
+class IMAGE_TRANSPORT_DECL PublisherPlugin : boost::noncopyable
 {
 public:
   virtual ~PublisherPlugin() {}

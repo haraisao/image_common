@@ -39,6 +39,7 @@
 #include <message_filters/simple_filter.h>
 
 #include "image_transport/image_transport.h"
+#include "exportdecl.h"
 
 namespace image_transport {
 
@@ -61,7 +62,7 @@ namespace image_transport {
 void callback(const boost::shared_ptr<const sensor_msgs::Image>&);
 \endverbatim
  */
-class SubscriberFilter : public message_filters::SimpleFilter<sensor_msgs::Image>
+class IMAGE_TRANSPORT_DECL SubscriberFilter : public message_filters::SimpleFilter<sensor_msgs::Image>
 {
 public:
   /**

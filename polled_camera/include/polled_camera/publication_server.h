@@ -40,6 +40,8 @@
 #include <sensor_msgs/CameraInfo.h>
 #include "polled_camera/GetPolledImage.h"
 
+#include "exportdecl.h"
+
 namespace polled_camera {
 
 /**
@@ -63,7 +65,7 @@ void callback(polled_camera::GetPolledImage::Request& req,
 }
 \endcode
  */
-class PublicationServer
+class POLLED_CAMERA_DECL PublicationServer
 {
 public:
   typedef boost::function<void (polled_camera::GetPolledImage::Request&,
