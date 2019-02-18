@@ -82,9 +82,9 @@ CameraPublisher::CameraPublisher(ImageTransport& image_it, ros::NodeHandle& info
   // image topic is remapped (#4539).
   std::string image_topic = info_nh.resolveName(base_topic);
   std::string info_topic = getCameraInfoTopic(image_topic);
-
+  
   impl_->image_pub_ = image_it.advertise(image_topic, queue_size, image_connect_cb,
-                                         image_disconnect_cb, tracked_object, latch);
+                                         image_disconnect_cb, tracked_object, latch);                                  
   impl_->info_pub_ = info_nh.advertise<sensor_msgs::CameraInfo>(info_topic, queue_size, info_connect_cb,
                                                                 info_disconnect_cb, tracked_object, latch);
 }
