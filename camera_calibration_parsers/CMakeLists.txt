@@ -51,6 +51,11 @@ add_library(${PROJECT_NAME}
 add_library(${PROJECT_NAME}_wrapper
   src/parse_wrapper.cpp)
 
+if(WIN32)
+  if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
+    add_definitions(-D_ITERATOR_DEBUG_LEVEL=2)
+  endif()
+endif()
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${YAML_CPP_LIBRARIES} ${Boost_FILESYSTEM_LIBRARY})
 target_link_libraries(${PROJECT_NAME}_wrapper ${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 
@@ -59,7 +64,9 @@ set_target_properties(${PROJECT_NAME}_wrapper PROPERTIES
         PREFIX ""
         LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION}
         )
-
+if(WIN32)
+  target_link_directories(${PROJECT_NAME}_wrapper PRIVATE "$ENV{PYTHON_DIR}/libs")
+endif()
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
 
 install(

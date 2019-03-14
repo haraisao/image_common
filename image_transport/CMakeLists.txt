@@ -44,7 +44,7 @@ target_link_libraries(${PROJECT_NAME}_plugins ${PROJECT_NAME})
 if(WIN32)
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_plugins
         RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-        CONFIGURATIONS Release
+        CONFIGURATIONS ${CMAKE_BUILD_TYPE}
 )
 endif()
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_plugins
